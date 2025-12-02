@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saree Store | Home</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; background:#fafafa; }
+        header { background: #fff; padding: 15px 30px; border-bottom: 1px solid #ddd; }
+        header a { margin-right: 20px; text-decoration: none; font-weight: bold; color: #000; }
+        .title { text-align: center; font-size: 28px; font-weight: bold; margin: 25px 0; }
+        .products { display: flex; justify-content:center; gap: 25px; flex-wrap: wrap; }
+        .card { width: 280px; background:#fff; padding:15px; border-radius:10px; box-shadow:0px 0px 10px rgba(0,0,0,.15); text-align:center; }
+        .card img { width: 100%; height: 250px; border-radius:10px; object-fit: cover; }
+        .card p { margin: 5px 0; }
+        .price { color: green; font-weight: bold; }
+        footer { text-align:center; padding:20px; background:#000; color:#fff; margin-top:40px; }
+    </style>
+</head>
+<body>
+
+<header>
+    <a href="/">Home</a>
+    <a href="/products/">All Products</a>
+    <a href="https://wa.me/918008215024" target="_blank">Contact</a>
+</header>
+
+<h2 class="title">Welcome to Saree Store ❤️</h2>
+
+<div class="products">
+{% for product in products %}
+    <div class="card">
+        <a href="/products/{{ product.id }}/"><img src="{{ product.image.url }}" alt="{{ product.name }}"></a>
+        <h3>{{ product.name }}</h3>
+        <p>{{ product.fabric }}</p>
+        <p class="price">₹{{ product.price }}</p>
+    </div>
+{% endfor %}
+</div>
+
+<footer>
+    © 2025 Saree Store - All Rights Reserved | WhatsApp Order Available
+</footer>
+
+</body>
+</html>

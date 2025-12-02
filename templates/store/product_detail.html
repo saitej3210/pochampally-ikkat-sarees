@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ product.name }} - Saree Store</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            padding: 20px;
+        }
+        .product-container {
+            max-width: 900px;
+            margin: auto;
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0px 0px 15px rgba(0,0,0,0.1);
+            display: flex;
+            gap: 20px;
+        }
+        .product-image {
+            width: 45%;
+        }
+        .product-image img {
+            width: 100%;
+            border-radius: 10px;
+        }
+        .product-details {
+            width: 55%;
+        }
+        h2 {
+            margin: 0 0 10px;
+            font-size: 28px;
+        }
+        .price {
+            font-size: 24px;
+            font-weight: bold;
+            color: green;
+        }
+        .btn-whatsapp {
+            margin-top: 20px;
+            background: #25D366;
+            color: white;
+            padding: 12px 18px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 18px;
+            display: inline-block;
+        }
+        .btn-back {
+            margin-top: 10px;
+            display: inline-block;
+            text-decoration: none;
+            padding: 8px 14px;
+            background: #ccc;
+            border-radius: 5px;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <div class="product-container">
+        <div class="product-image">
+            <img src="{{ product.image.url }}" alt="{{ product.name }}">
+        </div>
+        <div class="product-details">
+            <h2>{{ product.name }}</h2>
+            <p><strong>Fabric:</strong> {{ product.fabric }}</p>
+            <p><strong>Color:</strong> {{ product.color }}</p>
+            <p class="price">₹{{ product.price }}</p>
+
+            <a class="btn-whatsapp"
+   href="https://wa.me/918008215024?text=Hi! I want to order: {{ product.name }} - Link: http://{{ request.get_host }}{{ request.path }}"
+   target="_blank">
+    Order on WhatsApp 📩
+</a>
+
+            </a>
+
+            <br>
+            <a href="/products/" class="btn-back">⬅ Back to products</a>
+        </div>
+    </div>
+</body>
+</html>
