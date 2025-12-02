@@ -2,6 +2,20 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.conf import settings
 from .models import Product
 from django.contrib.auth.decorators import login_required
+from django.shortcuts import redirect
+from .forms import ProductForm
+
+@login_required
+def add_product(request):
+    if request.method == "POST":
+        form = ProductForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('manager')
+    else:
+        form = ProductForm()
+    return render(request, 'store/add_product.html', {'form': form})
+
 
 @login_required
 def manager_dashboard(request):
