@@ -11,4 +11,8 @@ urlpatterns = [
     path('seller/dashboard/', views.seller_dashboard, name='seller_dashboard'),
     path('seller/logout/', views.seller_logout, name='seller_logout'),
     path('seller/product/<int:pk>/edit/', views.seller_edit_product, name='seller_edit_product'),
+    path('seller/add/', views.seller_add_product, name='seller_add_product'),
+    path('manager/', views.manager_dashboard, name='manager'),
+
+
 ]

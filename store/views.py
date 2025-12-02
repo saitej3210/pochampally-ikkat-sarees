@@ -1,6 +1,12 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.conf import settings
 from .models import Product
+from django.contrib.auth.decorators import login_required
+
+@login_required
+def manager_dashboard(request):
+    products = Product.objects.all()
+    return render(request, 'store/manager.html', {'products': products})
 
 # ---------- PUBLIC VIEWS ----------
 
@@ -84,3 +90,18 @@ def seller_edit_product(request, pk):
         return redirect('seller_dashboard')
 
     return render(request, 'store/seller_edit_product.html', {'product': product})
+def seller_add_product(request):
+    if not _seller_is_logged_in(request):
+        return redirect('seller_login')
+
+    if request.method == "POST":
+        name = request.POST.get("name")
+        price = request.POST.get("price")
+        image = request.FILES.get("image")
+
+        if name and price and image:
+            Product.objects.create(name=name, price=price, image=image)
+            return redirect('seller_dashboard')
+
+    return render(request, 'store/seller_add_product.html')
+

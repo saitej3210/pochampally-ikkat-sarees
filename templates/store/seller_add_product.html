@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Add Product - IKKAT STORE MANAGER</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+    body{margin:0;font-family:Arial;background:#050510;color:white;}
+    .container{padding:20px;}
+    .card{background:#151525;padding:20px;border-radius:12px;}
+    label{display:block;margin-top:10px;font-size:14px;}
+    input{width:100%;padding:10px;border-radius:8px;margin-top:5px;border:none;background:#1b1b2a;color:white;}
+    button{width:100%;padding:12px;background:#6a00ff;border:none;border-radius:10px;font-size:16px;margin-top:15px;color:white;font-weight:bold;}
+    a{color:#b3b3ff;text-decoration:none;}
+</style>
+</head>
+<body>
+
+<div class="container">
+    <a href="{% url 'seller_dashboard' %}">← Back</a>
+    <div class="card">
+        <h3>Add New Saree</h3>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <label>Name</label>
+            <input type="text" name="name" required>
+
+            <label>Price (₹)</label>
+            <input type="number" name="price" required step="0.01">
+
+            <label>Upload Image</label>
+            <input type="file" name="image" required>
+
+            <button type="submit">Add Product</button>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

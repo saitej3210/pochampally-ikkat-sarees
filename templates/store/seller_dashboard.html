@@ -77,10 +77,15 @@
 
 <header>
     <div class="title">IKKAT STORE MANAGER</div>
+   <div class="top-links">
     <div class="top-links">
-        <a href="/products/">View Site</a>
-        <a href="{% url 'seller_logout' %}">Logout</a>
-    </div>
+    <a href="{% url 'seller_add_product' %}">Add Product +</a>
+    <a href="/products/">View Site</a>
+    <a href="{% url 'seller_logout' %}">Logout</a>
+</div>
+
+</div>
+
 </header>
 
 <div class="container">
