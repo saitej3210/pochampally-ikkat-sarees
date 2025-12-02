@@ -71,11 +71,12 @@
             <p><strong>Color:</strong> {{ product.color }}</p>
             <p class="price">₹{{ product.price }}</p>
 
-            <a class="btn-whatsapp"
-   href="https://wa.me/918008215024?text=Hi! I want to order: {{ product.name }} - Link: http://{{ request.get_host }}{{ request.path }}"
+           <a class="btn-whatsapp"
+   href="https://wa.me/918008215024?text=Hi! I want to buy 👗:%0A{{ product.name }}%0AProduct Link 👉:%0A{{ request.scheme }}://{{ request.get_host }}{% url 'product_detail' product.id %}"
    target="_blank">
-    Order on WhatsApp 📩
+    Order on WhatsApp 💬
 </a>
+
 
             </a>
 
