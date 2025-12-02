@@ -3,44 +3,132 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Saree Store | Home</title>
-    <style>
-        body { font-family: Arial, sans-serif; margin: 0; padding: 0; background:#fafafa; }
-        header { background: #fff; padding: 15px 30px; border-bottom: 1px solid #ddd; }
-        header a { margin-right: 20px; text-decoration: none; font-weight: bold; color: #000; }
-        .title { text-align: center; font-size: 28px; font-weight: bold; margin: 25px 0; }
-        .products { display: flex; justify-content:center; gap: 25px; flex-wrap: wrap; }
-        .card { width: 280px; background:#fff; padding:15px; border-radius:10px; box-shadow:0px 0px 10px rgba(0,0,0,.15); text-align:center; }
-        .card img { width: 100%; height: 250px; border-radius:10px; object-fit: cover; }
-        .card p { margin: 5px 0; }
-        .price { color: green; font-weight: bold; }
-        footer { text-align:center; padding:20px; background:#000; color:#fff; margin-top:40px; }
-    </style>
+    <title>Ikkat Sarees - Home</title>
+
+<style>
+    body {
+        margin: 0;
+        font-family: 'Segoe UI', sans-serif;
+        background: #fdf0f5;
+    }
+
+    /* Navbar */
+    .navbar {
+        background: #8B004B;
+        padding: 14px 22px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .nav-logo {
+        color: #fff;
+        font-size: 24px;
+        font-weight: bold;
+        text-decoration: none;
+        letter-spacing: 1px;
+    }
+    .nav-links a {
+        margin-left: 20px;
+        color: #fff;
+        text-decoration: none;
+        font-size: 17px;
+        font-weight: 500;
+    }
+
+    /* Product Cards */
+    .product-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 25px;
+        padding: 35px;
+    }
+
+    .product-card {
+        background: #fff;
+        border-radius: 15px;
+        padding: 15px;
+        text-align: center;
+        cursor: pointer;
+        transition: 0.3s ease-in-out;
+        box-shadow: 0px 3px 12px rgba(0,0,0,0.08);
+    }
+    .product-card:hover {
+        transform: translateY(-7px);
+        box-shadow: 0px 8px 22px rgba(0,0,0,0.15);
+    }
+
+    .product-card img {
+        width: 100%;
+        height: 300px;
+        object-fit: cover;
+        border-radius: 12px;
+        border: 3px solid #8B004B20;
+    }
+
+    .product-name {
+        font-size: 19px;
+        font-weight: 600;
+        margin-top: 10px;
+        color: #5a0030;
+    }
+
+    .product-price {
+        font-size: 17px;
+        font-weight: bold;
+        margin: 5px 0;
+        color: #b80054;
+    }
+
+    .btn-whatsapp {
+        background: #25D366;
+        color: #fff;
+        padding: 12px;
+        border-radius: 10px;
+        text-decoration: none;
+        display: block;
+        margin-top: 10px;
+        font-size: 16px;
+        font-weight: 600;
+    }
+    .btn-whatsapp:hover {
+        opacity: 0.85;
+    }
+
+
+</style>
 </head>
+
 <body>
 
-<header>
+<!-- NAVBAR -->
+<nav class="navbar">
+  <a href="/" class="nav-logo">Ikkat Sarees 💖</a>
+  <div class="nav-links">
     <a href="/">Home</a>
-    <a href="/products/">All Products</a>
-    <a href="https://wa.me/918008215024" target="_blank">Contact</a>
-</header>
+    <a href="/products/">Products</a>
+    <a href="https://wa.me/918008215024?text=Hi! I want to order" target="_blank">WhatsApp</a>
+  </div>
+</nav>
 
-<h2 class="title">Welcome to Saree Store ❤️</h2>
+<!-- PRODUCT LIST -->
+<div class="product-container">
+    {% for product in products %}
+    <div class="product-card">
+        <a href="{% url 'product_detail' product.id %}">
+            <img src="{{ product.image.url }}" alt="{{ product.name }}">
+        </a>
+        <p class="product-name">{{ product.name }}</p>
+<p class="product-price">₹{{ product.price }}</p>
 
-<div class="products">
-{% for product in products %}
-    <div class="card">
-        <a href="/products/{{ product.id }}/"><img src="{{ product.image.url }}" alt="{{ product.name }}"></a>
-        <h3>{{ product.name }}</h3>
-        <p>{{ product.fabric }}</p>
-        <p class="price">₹{{ product.price }}</p>
+<a class="btn-whatsapp"
+   href="https://wa.me/918008215024?text=Hi! I want to order: {{ product.name }} - Price: ₹{{ product.price }}"
+   target="_blank">
+    Order on WhatsApp 💬
+</a>
+
     </div>
-{% endfor %}
+    {% endfor %}
 </div>
-
-<footer>
-    © 2025 Saree Store - All Rights Reserved | WhatsApp Order Available
-</footer>
 
 </body>
 </html>
