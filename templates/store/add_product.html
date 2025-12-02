@@ -52,11 +52,30 @@
 <div class="container">
     <h2>➕ Add New Product</h2>
 
-    <form method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="save-btn">Save Product</button>
-    </form>
+   <form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    {% if form.instance.id %}
+    <a style="display:block;
+              background:#25D366;
+              padding:14px;
+              text-align:center;
+              color:white;
+              border-radius:10px;
+              margin-bottom:10px;
+              font-size:16px;
+              font-weight:600;
+              text-decoration:none;"
+       href="https://wa.me/918008215024?text=Hi! I want to order: {{ form.instance.name }}"
+       target="_blank">
+       Order on WhatsApp 💬
+    </a>
+    {% endif %}
+
+    <button type="submit" class="save-btn">Save Product</button>
+</form>
+
 </div>
 
 </body>
