@@ -122,3 +122,6 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+# Seller PIN for IKKAT STORE MANAGER (for mobile seller login)
+SELLER_PIN = "1905"
+

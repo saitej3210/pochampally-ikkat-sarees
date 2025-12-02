@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>IKKAT STORE MANAGER - Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body{
+            margin:0;
+            font-family: Arial, sans-serif;
+            background:#050510;
+            color:white;
+        }
+        header{
+            padding:15px 20px;
+            background:#0d0d1a;
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+        }
+        .title{
+            font-weight:bold;
+            letter-spacing:1px;
+        }
+        .top-links a{
+            color:#b3b3ff;
+            text-decoration:none;
+            margin-left:15px;
+            font-size:14px;
+        }
+        .container{
+            padding:15px;
+        }
+        .product-card{
+            background:#151525;
+            border-radius:12px;
+            padding:12px;
+            margin-bottom:12px;
+            display:flex;
+            align-items:center;
+            gap:12px;
+        }
+        .product-card img{
+            width:70px;
+            height:70px;
+            border-radius:8px;
+            object-fit:cover;
+        }
+        .info{
+            flex:1;
+        }
+        .name{
+            font-size:16px;
+            font-weight:bold;
+        }
+        .price{
+            font-size:14px;
+            color:#ffcc66;
+            margin-top:3px;
+        }
+        .actions a{
+            background:#6a00ff;
+            padding:8px 12px;
+            border-radius:8px;
+            color:white;
+            font-size:13px;
+            text-decoration:none;
+        }
+        .nodata{
+            text-align:center;
+            margin-top:40px;
+            color:#8888aa;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="title">IKKAT STORE MANAGER</div>
+    <div class="top-links">
+        <a href="/products/">View Site</a>
+        <a href="{% url 'seller_logout' %}">Logout</a>
+    </div>
+</header>
+
+<div class="container">
+    {% for product in products %}
+    <div class="product-card">
+        {% if product.image %}
+            <img src="{{ product.image.url }}" alt="{{ product.name }}">
+        {% else %}
+            <img src="https://via.placeholder.com/70x70?text=No+Image" alt="">
+        {% endif %}
+        <div class="info">
+            <div class="name">{{ product.name }}</div>
+            <div class="price">₹{{ product.price }}</div>
+        </div>
+        <div class="actions">
+            <a href="{% url 'seller_edit_product' product.id %}">Edit</a>
+        </div>
+    </div>
+    {% empty %}
+    <div class="nodata">No products found. Add from admin or database.</div>
+    {% endfor %}
+</div>
+
+</body>
+</html>
